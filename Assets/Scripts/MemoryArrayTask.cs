@@ -17,11 +17,6 @@ public class MemoryArrayTask : MonoBehaviour
     {
         CreateMemoryArrays();
 	}
-
-    private void Update()
-    {
-        RunTask();
-    }
     
     private void CreateMemoryArrays()
     {
@@ -34,15 +29,6 @@ public class MemoryArrayTask : MonoBehaviour
         newMemoryArray = Instantiate( memoryArrayPrefab ) as MemoryArray; 
         newMemoryArray.transform.position += Vector3.left * memoryArrayPrefab.unitSize * 3f; 
         newMemoryArray.Initialize( itemCount );
-    }
-
-    private void StartPhase( int i )
-    {
-        _currentPhase = phases[i];
-    }
-    
-    private void RunTask()
-    {
     }
 }
 
