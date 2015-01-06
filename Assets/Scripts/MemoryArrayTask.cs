@@ -3,13 +3,52 @@ using System.Collections;
 
 public class MemoryArrayTask : MonoBehaviour 
 {
+    public TaskPhase[] phases;
+    private TaskPhase _currentPhase;
+
+    public MemoryArray memoryArrayPrefab;
+
+    public Transform stage;
+    //public Arrow arrow;
+
+    private float _timer;
+
 	void Start () 
     {
-        StartCoroutine( BeginMemoryTask() );	
+        CreateMemoryArrays();
 	}
-    
-    private IEnumerator BeginMemoryTask()
+
+    private void Update()
     {
-        yield return 0;
+        RunTask();
     }
+    
+    private void CreateMemoryArrays()
+    {
+        int itemCount = Random.Range( 1, 11 );
+        
+        MemoryArray newMemoryArray = Instantiate( memoryArrayPrefab ) as MemoryArray; 
+        newMemoryArray.transform.position += Vector3.right * memoryArrayPrefab.unitSize * 3f; 
+        newMemoryArray.Initialize( itemCount );
+
+        newMemoryArray = Instantiate( memoryArrayPrefab ) as MemoryArray; 
+        newMemoryArray.transform.position += Vector3.left * memoryArrayPrefab.unitSize * 3f; 
+        newMemoryArray.Initialize( itemCount );
+    }
+
+    private void StartPhase( int i )
+    {
+        _currentPhase = phases[i];
+    }
+    
+    private void RunTask()
+    {
+    }
+}
+
+[System.Serializable]
+public class TaskPhase
+{
+    public string name;
+    public float duration;
 }
