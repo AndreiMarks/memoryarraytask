@@ -19,6 +19,8 @@ public class MemoryArray : MonoBehaviour
 
     private void GenerateSquares( int squareCount )
     {
+	    Debug.Log( squareCount );
+        
         _squares = new Square[squareCount];
         List<Color> availableColors = GetAvailableColors();
         for( int i = 0; i < squareCount; i++ )
